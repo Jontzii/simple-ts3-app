@@ -1,0 +1,97 @@
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+.Loader.available {
+  opacity: 0;
+}
+
+.Loader {
+  background-color: #282c34;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  opacity: 1;
+  pointer-events: none;
+  
+  -webkit-transition: opacity cubic-bezier(.4,0,.2,1) 436ms;
+  -moz-transition: opacity cubic-bezier(.4,0,.2,1) 436ms;
+  transition: opacity cubic-bezier(.4,0,.2,1) 436ms;
+  
+  z-index: 9999;
+}
+
+.Loader-logo {
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  -webkit-justify-content: center;
+  -webkit-animation: fadein 436ms;
+
+  display: -moz-flex;
+  -moz-flex-direction: column;
+  -moz-justify-content: center;
+  -moz-animation: fadein 436ms;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadein 436ms;
+
+  height: 100%
+}
+
+.Loader-logo-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+
+  -webkit-align-self: center;
+  -moz-align-self: center;
+  align-self: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Loader-logo-img {
+    animation: Loader-spin infinite 1s linear;
+  }
+}
+
+@keyframes Loader-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0 
+  }
+  to {
+    opacity: 1
+  }
+}
+
+@-moz-keyframes fadein { 
+  from {
+    opacity: 0 
+  }
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0 
+  }
+  to {
+    opacity: 1
+  }
+}
