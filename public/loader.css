@@ -18,9 +18,9 @@ body {
   opacity: 1;
   pointer-events: none;
   
-  -webkit-transition: opacity cubic-bezier(.4,0,.2,1) 436ms;
-  -moz-transition: opacity cubic-bezier(.4,0,.2,1) 436ms;
-  transition: opacity cubic-bezier(.4,0,.2,1) 436ms;
+  -webkit-transition: opacity cubic-bezier(.4,0,.2,1) 200ms;
+  -moz-transition: opacity cubic-bezier(.4,0,.2,1) 200ms;
+  transition: opacity cubic-bezier(.4,0,.2,1) 200ms;
   
   z-index: 9999;
 }
@@ -29,24 +29,24 @@ body {
   display: -webkit-flex;
   -webkit-flex-direction: column;
   -webkit-justify-content: center;
-  -webkit-animation: fadein 436ms;
+  -webkit-animation: fadein 200ms;
 
   display: -moz-flex;
   -moz-flex-direction: column;
   -moz-justify-content: center;
-  -moz-animation: fadein 436ms;
+  -moz-animation: fadein 200ms;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  animation: fadein 436ms;
+  animation: fadein 200ms;
 
   height: 100%
 }
 
 .Loader-logo-img {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 
   -webkit-align-self: center;
@@ -56,7 +56,7 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   .Loader-logo-img {
-    animation: Loader-spin infinite 1s linear;
+    animation: Loader-spin infinite 500ms linear;
   }
 }
 
@@ -78,7 +78,7 @@ body {
   }
 }
 
-@-moz-keyframes fadein { 
+@-webkit-keyframes fadein {
   from {
     opacity: 0 
   }
@@ -87,7 +87,7 @@ body {
   }
 }
 
-@keyframes fadein {
+@-moz-keyframes fadein { 
   from {
     opacity: 0 
   }
