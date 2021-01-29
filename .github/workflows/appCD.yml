@@ -16,6 +16,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: | 
+              npm ci 
+              npm install typescript -g
 
       - name: Set up Docker Buildx
         id: buildx
