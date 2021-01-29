@@ -11,9 +11,11 @@ import './App.css';
 
 class App extends React.Component {
 
-  // fake loading time
+  /**
+   * Fake loading time
+   */
   LoadingFaker(){
-    return new Promise(resolve => setTimeout(resolve, 500)) // 1 seconds
+    return new Promise(resolve => setTimeout(resolve, 1000)) // 1 second
   }
 
   componentDidMount(){
@@ -21,12 +23,13 @@ class App extends React.Component {
       const spinningLoader = document.getElementById('Loader')
       
       if(spinningLoader){
-        // fade out
+        // Fade out the spinner
         spinningLoader.classList.add('available')
+        
+        // Remove from DOM
         setTimeout(() => {
-          // remove from DOM
           spinningLoader.outerHTML = ''
-        }, 2000)
+        }, 4000)
       }
     })
   }
@@ -38,18 +41,21 @@ class App extends React.Component {
           <h1>
             Naapur1t TS server
           </h1>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
 
-          <a
-          className="App-link"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          >
-            Join server!
+          <a className="hvr-float-shadow" target="_blank" rel="nofollow noopener noreferrer">
+            Join server
           </a>
         </header>
+        <section className="App-section">
+          <div id="Channelview">
+            
+          </div>
+        </section>
+        <footer className="App-footer">
+          <a className="hvr-float-shadow" href="https://joonashiltunen.fi" target="_blank">
+            © 2021 Jontzi
+          </a>
+        </footer>
       </div>
     );
   }
