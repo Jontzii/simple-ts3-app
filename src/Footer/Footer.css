@@ -1,0 +1,10 @@
+.App-footer {
+  background-color: #282c34;
+  color: white;
+  min-height: 5vh;
+  margin: auto;
+}
+
+.App-footer a {
+  color: white;
+}

@@ -1,0 +1,122 @@
+.Updater.finished {
+  opacity: 0;
+}
+
+.Updater.refresh {
+  opacity: 1;
+}
+
+.Updater {
+  position: fixed;
+  left: 95vw;
+  top: 90vh;
+
+  height: 3vw;
+  width: 3vw;
+  margin:0px auto;
+  
+  -webkit-animation: rotation .4s infinite linear;
+  -moz-animation: rotation .4s infinite linear;
+  -o-animation: rotation .4s infinite linear;
+  animation: rotation .4s infinite linear;
+  
+  border-left:3px solid rgba(0,174,239,.30);
+  border-right:3px solid rgba(0,174,239,.30);
+  border-bottom:3px solid rgba(0,174,239,.30);
+  border-top:3px solid white;
+  border-radius:100%;
+
+  -webkit-transition: opacity cubic-bezier(.4,0,.2,1) 250ms;
+  -moz-transition: opacity cubic-bezier(.4,0,.2,1) 250ms;
+  transition: opacity cubic-bezier(.4,0,.2,1) 250ms;
+
+  opacity: 0;
+}
+
+@-webkit-keyframes rotation {
+  from {-webkit-transform: rotate(0deg);}
+  to {-webkit-transform: rotate(359deg);}
+}
+@-moz-keyframes rotation {
+  from {-moz-transform: rotate(0deg);}
+  to {-moz-transform: rotate(359deg);}
+}
+@-o-keyframes rotation {
+  from {-o-transform: rotate(0deg);}
+  to {-o-transform: rotate(359deg);}
+}
+@keyframes rotation {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(359deg);}
+}
+
+/* Media queries */
+@media (max-width: 1200px) {
+  .Updater {
+    top: 92vh;
+    left: 92.5vw;
+
+    height: 3.5vw;
+    width: 3.5vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .Updater {
+    top: 90vh;
+    left: 90vw;
+
+    height: 4vw;
+    width: 4vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .Updater {
+    top: 87vh;
+    left: 88.5vw;
+
+    height: 4.5vw;
+    width: 4.5vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .Updater {
+    top: 86vh;
+    left: 87vw;
+
+    height: 5.25vw;
+    width: 5.25vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .Updater {
+    top: 85vh;
+    left: 86vw;
+
+    height: 6vw;
+    width: 6vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .Updater {
+    top: 84vh;
+    left: 85vw;
+
+    height: 7.5vw;
+    width: 7.5vw;
+  }
+}
+
+@media (max-width: 320px) {
+  .Updater {
+    top: 83.5vh;
+    left: 80vw;
+
+    height: 9vw;
+    width: 9vw;
+  }
+}

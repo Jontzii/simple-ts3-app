@@ -1,0 +1,17 @@
+.App-section-grid-item {
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #3b414d;
+  text-align: center;
+  box-shadow: 5px 5px #1c1e24;
+}
+
+.App-section-grid-item-body {
+  margin: 10px;
+  text-align: center;
+}
+
+.App-section-grid-item-body ul {
+  list-style-position: inside;
+  list-style-type: '↳ ';
+}

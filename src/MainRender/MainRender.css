@@ -1,0 +1,21 @@
+* { 
+  margin: 0; 
+  padding: 0; 
+}
+
+.App-section {
+  background-color: #282c34;
+  color: #f3f3f3;
+  min-height: 85vh;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-section-grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 450px));
+  overflow: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
+}

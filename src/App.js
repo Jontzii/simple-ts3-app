@@ -1,25 +1,116 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/* CSS Files */
+import './App.css';
+import './Misc/Hover.css';
+
+/* External components */
+import MainRender from './MainRender/MainRender'
+import Error from './Error/Error'
+import Footer from './Footer/Footer'
+
+/* Helper functions */
+import clearLoader from './Misc/ClearLoader'
+import fetchData from './Misc/FetchData'
+import { ShowUpdateSpinner, HideUpdateSpinner } from './Misc/UpdateLoader'
+
+/*
+  TODO:
+  Every channel is one tile in a grid
+
+  Every tile has a header showing the name of the channel
+  Every tile has a list of clients on that channel
+*/
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      data: null
+    }
+
+    this.interval = null;
+  }
+
+  /**
+   * Add some loading time so the animation wont be too fast
+   */
+  minLoadingTimer(){
+    return new Promise(resolve => setTimeout(resolve, 500)) // 500ms
+  }
+
+  componentDidMount(){
+    this.minLoadingTimer().then(() => {
+      this.handleFetch().then(() => {
+        clearLoader();
+        this.interval = setInterval(this.updateChannels.bind(this), 10000); // 30s
+      });
+    })
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  /**
+   * Fetches new data
+   */
+  handleFetch() {
+    return new Promise(resolve => {
+      fetchData()
+      .then(res => {
+        this.setState({
+          data: res
+        })
+
+        resolve()
+      })
+      .catch(err => console.log(err));
+    })
+  }
+
+  /**
+   * Handles the actual update process
+   */
+  updateChannels() {
+    
+    console.log("Updating")
+
+    // Add spinner to lower right corner
+    ShowUpdateSpinner();
+
+    // Fetch data
+    this.handleFetch()
+    .then(() => {
+      // Remove spinner
+      setTimeout(() => HideUpdateSpinner(), 1000);
+    })
+    .catch(err => console.log(err))
+  }
+  
+  render() {
+    const {
+      error,
+      data,
+    } = this.state;
+
+    if (error) {
+      return (
+        <div className="App">
+          <Error />
+          <Footer />
+        </div>
+      )
+    }
+    else {
+      return (
+        <div className="App">
+          <MainRender data={data} />
+        </div>
+      );
+    }
+  }
 }
 
 export default App;
