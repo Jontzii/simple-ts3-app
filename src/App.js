@@ -1,5 +1,17 @@
 import React from 'react';
+
+/* CSS Files */
 import './App.css';
+import './Misc/Hover.css';
+
+/* External components */
+import MainRender from './MainRender/MainRender'
+import Error from './Error/Error'
+import Footer from './Footer/Footer'
+
+/* Helper functions */
+import clearLoader from './Misc/ClearLoader'
+import fetchData from './Misc/FetchData'
 
 /*
   TODO:
@@ -10,54 +22,65 @@ import './App.css';
 */
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      data: null
+    }
+  }
 
   /**
    * Fake loading time
    */
-  LoadingFaker(){
-    return new Promise(resolve => setTimeout(resolve, 1000)) // 1 second
+  minLoadingTimer(){
+    return new Promise(resolve => setTimeout(resolve, 500)) // 1 second
   }
 
   componentDidMount(){
-    this.LoadingFaker().then(() => {
-      const spinningLoader = document.getElementById('Loader')
-      
-      if(spinningLoader){
-        // Fade out the spinner
-        spinningLoader.classList.add('available')
-        
-        // Remove from DOM
-        setTimeout(() => {
-          spinningLoader.outerHTML = ''
-        }, 4000)
-      }
+    this.minLoadingTimer().then(() => {
+      this.handleFetch().then(() => clearLoader());
     })
   }
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1>
-            Naapur1t TS server
-          </h1>
+  /**
+   * Fetches new data
+   */
+  handleFetch() {
+    return new Promise(resolve => {
+      fetchData()
+      .then(res => {
+        this.setState({
+          data: res
+        })
 
-          <a className="hvr-float-shadow" target="_blank" rel="nofollow noopener noreferrer">
-            Join server
-          </a>
-        </header>
-        <section className="App-section">
-          <div id="Channelview">
-            
-          </div>
-        </section>
-        <footer className="App-footer">
-          <a className="hvr-float-shadow" href="https://joonashiltunen.fi" target="_blank">
-            © 2021 Jontzi
-          </a>
-        </footer>
-      </div>
-    );
+        resolve()
+      })
+      .catch(err => console.log(err));
+    })
+  }
+  
+  render() {
+    const {
+      error,
+      data,
+    } = this.state;
+
+    if (error) {
+      return (
+        <div className="App">
+          <Error />
+          <Footer />
+        </div>
+      )
+    }
+    else {
+      return (
+        <div className="App">
+          <MainRender data={data} />
+        </div>
+      );
+    }
   }
 }
 
