@@ -9,10 +9,10 @@
 .Updater {
   position: fixed;
   left: 95vw;
-  top: 92vh;
+  top: 90vh;
 
-  height:5vh;
-  width:5vh;
+  height: 3vw;
+  width: 3vw;
   margin:0px auto;
   
   -webkit-animation: rotation .4s infinite linear;
@@ -50,17 +50,73 @@
   to {transform: rotate(359deg);}
 }
 
-@-webkit-keyframes fadein {
-  from { opacity: 0 }
-  to { opacity: 1 }
+/* Media queries */
+@media (max-width: 1200px) {
+  .Updater {
+    top: 92vh;
+    left: 92.5vw;
+
+    height: 3.5vw;
+    width: 3.5vw;
+  }
 }
 
-@-moz-keyframes fadein { 
-  from { opacity: 0 }
-  to { opacity: 1 }
+@media (max-width: 1024px) {
+  .Updater {
+    top: 90vh;
+    left: 90vw;
+
+    height: 4vw;
+    width: 4vw;
+  }
 }
 
-@keyframes fadein {
-  from { opacity: 0 }
-  to { opacity: 1 }
+@media (max-width: 900px) {
+  .Updater {
+    top: 87vh;
+    left: 88.5vw;
+
+    height: 4.5vw;
+    width: 4.5vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .Updater {
+    top: 86vh;
+    left: 87vw;
+
+    height: 5.25vw;
+    width: 5.25vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .Updater {
+    top: 85vh;
+    left: 86vw;
+
+    height: 6vw;
+    width: 6vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .Updater {
+    top: 84vh;
+    left: 85vw;
+
+    height: 7.5vw;
+    width: 7.5vw;
+  }
+}
+
+@media (max-width: 320px) {
+  .Updater {
+    top: 83.5vh;
+    left: 80vw;
+
+    height: 9vw;
+    width: 9vw;
+  }
 }
