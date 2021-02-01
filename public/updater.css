@@ -1,0 +1,66 @@
+.Updater.finished {
+  opacity: 0;
+}
+
+.Updater.refresh {
+  opacity: 1;
+}
+
+.Updater {
+  position: fixed;
+  left: 95vw;
+  top: 92vh;
+
+  height:5vh;
+  width:5vh;
+  margin:0px auto;
+  
+  -webkit-animation: rotation .4s infinite linear;
+  -moz-animation: rotation .4s infinite linear;
+  -o-animation: rotation .4s infinite linear;
+  animation: rotation .4s infinite linear;
+  
+  border-left:3px solid rgba(0,174,239,.30);
+  border-right:3px solid rgba(0,174,239,.30);
+  border-bottom:3px solid rgba(0,174,239,.30);
+  border-top:3px solid white;
+  border-radius:100%;
+
+  -webkit-transition: opacity cubic-bezier(.4,0,.2,1) 250ms;
+  -moz-transition: opacity cubic-bezier(.4,0,.2,1) 250ms;
+  transition: opacity cubic-bezier(.4,0,.2,1) 250ms;
+
+  opacity: 0;
+}
+
+@-webkit-keyframes rotation {
+  from {-webkit-transform: rotate(0deg);}
+  to {-webkit-transform: rotate(359deg);}
+}
+@-moz-keyframes rotation {
+  from {-moz-transform: rotate(0deg);}
+  to {-moz-transform: rotate(359deg);}
+}
+@-o-keyframes rotation {
+  from {-o-transform: rotate(0deg);}
+  to {-o-transform: rotate(359deg);}
+}
+@keyframes rotation {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(359deg);}
+}
+
+@-webkit-keyframes fadein {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@-moz-keyframes fadein { 
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes fadein {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}

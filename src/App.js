@@ -12,6 +12,7 @@ import Footer from './Footer/Footer'
 /* Helper functions */
 import clearLoader from './Misc/ClearLoader'
 import fetchData from './Misc/FetchData'
+import { ShowUpdateSpinner, HideUpdateSpinner } from './Misc/UpdateLoader'
 
 /*
   TODO:
@@ -73,9 +74,18 @@ class App extends React.Component {
    * Handles the actual update process
    */
   updateChannels() {
+    
+    console.log("Updating")
+
+    // Add spinner to lower right corner
+    ShowUpdateSpinner();
+
     // Fetch data
     this.handleFetch()
-    .then(() => {})
+    .then(() => {
+      // Remove spinner
+      setTimeout(() => HideUpdateSpinner(), 1000);
+    })
     .catch(err => console.log(err))
   }
   
