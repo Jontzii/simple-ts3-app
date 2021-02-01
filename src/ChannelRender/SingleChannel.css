@@ -6,8 +6,13 @@
   box-shadow: 5px 5px #1c1e24;
 }
 
+.App-section-grid-item-header {
+  margin: 10px;
+}
+
 .App-section-grid-item-body {
   margin: 10px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
