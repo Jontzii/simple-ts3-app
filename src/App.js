@@ -28,19 +28,28 @@ class App extends React.Component {
       error: null,
       data: null
     }
+
+    this.interval = null;
   }
 
   /**
-   * Fake loading time
+   * Add some loading time so the animation wont be too fast
    */
   minLoadingTimer(){
-    return new Promise(resolve => setTimeout(resolve, 500)) // 1 second
+    return new Promise(resolve => setTimeout(resolve, 500)) // 500ms
   }
 
   componentDidMount(){
     this.minLoadingTimer().then(() => {
-      this.handleFetch().then(() => clearLoader());
+      this.handleFetch().then(() => {
+        clearLoader();
+        this.interval = setInterval(this.updateChannels.bind(this), 10000); // 30s
+      });
     })
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   /**
@@ -58,6 +67,16 @@ class App extends React.Component {
       })
       .catch(err => console.log(err));
     })
+  }
+
+  /**
+   * Handles the actual update process
+   */
+  updateChannels() {
+    // Fetch data
+    this.handleFetch()
+    .then(() => {})
+    .catch(err => console.log(err))
   }
   
   render() {
