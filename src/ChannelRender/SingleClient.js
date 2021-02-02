@@ -14,7 +14,7 @@ export default class RenderSingleClient extends React.Component {
         <li>
           <span>
             <img src={arrow} alt="Arrow" />
-            <span> {client.clientNickname} - <img src={inputOff} alt="Input muted" /> | <img src={outputOff} alt="Output muted" /></span>
+            <span> {client.clientNickname} - <AddMicOffImage /> | <AddSoundOffImage /></span>
           </span>
         </li>
       )
@@ -24,7 +24,7 @@ export default class RenderSingleClient extends React.Component {
         <li>
           <span>
             <img src={arrow} alt="Arrow" />
-            <span> {client.clientNickname} - <img src={inputOff} alt="Input muted" /></span>
+            <span> {client.clientNickname} - <AddMicOffImage /></span>
           </span>
         </li>
       )
@@ -34,7 +34,7 @@ export default class RenderSingleClient extends React.Component {
         <li>
           <span>
             <img src={arrow} alt="Arrow" />
-            <span> {client.clientNickname} - <img src={outputOff} alt="Output muted" /></span>
+            <span> {client.clientNickname} - <AddSoundOffImage /></span>
           </span>
         </li>
       )
@@ -47,5 +47,21 @@ export default class RenderSingleClient extends React.Component {
         </li>
       )
     }
+  }
+}
+
+class AddMicOffImage extends React.Component {
+  render() {
+    return (
+      <img src={inputOff} title="Client's microphone is muted." alt="Microphone muted" />
+    )
+  }
+}
+
+class AddSoundOffImage extends React.Component {
+  render() {
+    return (
+      <img src={outputOff} title="Client's output is muted." alt="Output muted" />
+    )
   }
 }
