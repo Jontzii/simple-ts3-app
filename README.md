@@ -34,4 +34,4 @@ Your app is ready to be deployed!
 
 ### `docker build -t your_app_name .`
 
-Builds a Docker image from the 
+Builds a Docker image from the project.
