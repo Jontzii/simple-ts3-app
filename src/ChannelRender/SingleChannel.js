@@ -7,7 +7,7 @@ import RenderSingleClient from './SingleClient'
 
 export default class SingleChannelRender extends React.Component {
   render() {
-    const { channelName, clients, cid } = this.props;
+    const { channelName, clients } = this.props;
     const clientsHTML = [];
 
     const url = `ts3server://ts.jontzi.com?channel=${channelName}`;
