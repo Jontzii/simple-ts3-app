@@ -38,22 +38,4 @@ export default class SingleChannelRender extends React.Component {
       </div>
     )
   }
-  
-  if (channel) {
-
-    console.log(channel.channelName)
-
-    return (
-          <div className="App-section-grid-item">
-            <div className="App-section-grid-item-header">
-              <h1>Channel template</h1>
-            </div>
-            <div className="App-section-grid-item-body">
-              <ul>
-                <li>User template</li>
-              </ul>
-            </div>
-          </div>
-    );
-  }
 }
