@@ -7,7 +7,7 @@ import RenderSingleClient from './SingleClient'
 
 export default class SingleChannelRender extends React.Component {
   render() {
-    const { channelName, clients, cid } = this.props;
+    const { channelName, clients } = this.props;
     const clientsHTML = [];
 
     const url = `ts3server://ts.jontzi.com?channel=${channelName}`;
@@ -22,13 +22,19 @@ export default class SingleChannelRender extends React.Component {
             </a>
             </div>
             <div className="App-section-grid-item-body">
-              <p>No clients connected🙁</p>
+              <p>No clients🙁</p>
             </div>
           </div>
         </div> 
       )
     }
 
+    // Sort clients by clientNickname
+    clients.sort((a, b) => {
+      return a.clientNickname.toLowerCase().localeCompare(b.clientNickname.toLowerCase());
+    })
+
+    // Render clients into a array
     clients.forEach(client => {
       clientsHTML.push(<RenderSingleClient key={client.clid} client={client} />)
     })
