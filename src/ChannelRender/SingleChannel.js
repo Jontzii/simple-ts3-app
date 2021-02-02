@@ -22,7 +22,7 @@ export default class SingleChannelRender extends React.Component {
             </a>
             </div>
             <div className="App-section-grid-item-body">
-              <p>No clients connected🙁</p>
+              <p>No clients🙁</p>
             </div>
           </div>
         </div> 
