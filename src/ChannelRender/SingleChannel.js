@@ -1,23 +1,31 @@
 import React from 'react';
+
 import './SingleChannel.css'
+import './../Misc/Hover.css'
 
 import RenderSingleClient from './SingleClient'
 
 export default class SingleChannelRender extends React.Component {
   render() {
-    const { name, clients } = this.props;
+    const { channelName, clients, cid } = this.props;
     const clientsHTML = [];
+
+    const url = `ts3server://ts.jontzi.com?channel=${channelName}`;
 
     if (!clients || clients.length === 0) {
       return (
         <div className="App-section-grid-item">
-          <div className="App-section-grid-item-header">
-            <h3>{name}</h3>
+          <div >
+            <div className="App-section-grid-item-header">
+            <a className="hvr-float-shadow" href={url} >
+              <h3>{channelName}</h3>
+            </a>
+            </div>
+            <div className="App-section-grid-item-body">
+              <p>No clients connected🙁</p>
+            </div>
           </div>
-          <div className="App-section-grid-item-body">
-            <p>No clients connected🙁</p>
-          </div>
-        </div>
+        </div> 
       )
     }
 
@@ -28,7 +36,9 @@ export default class SingleChannelRender extends React.Component {
     return (
       <div className="App-section-grid-item">
         <div className="App-section-grid-item-header">
-          <h3>{name}</h3>
+          <a className="hvr-float-shadow" href={url} >
+            <h3>{channelName}</h3>
+          </a>
         </div>
         <div className="App-section-grid-item-body">
           <ul>
