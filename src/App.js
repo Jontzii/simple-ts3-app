@@ -14,14 +14,6 @@ import clearLoader from './Misc/ClearLoader'
 import fetchData from './Misc/FetchData'
 import { ShowUpdateSpinner, HideUpdateSpinner } from './Misc/UpdateLoader'
 
-/*
-  TODO:
-  Every channel is one tile in a grid
-
-  Every tile has a header showing the name of the channel
-  Every tile has a list of clients on that channel
-*/
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -74,9 +66,6 @@ class App extends React.Component {
    * Handles the actual update process
    */
   updateChannels() {
-    
-    console.log("Updating")
-
     // Add spinner to lower right corner
     ShowUpdateSpinner();
 
