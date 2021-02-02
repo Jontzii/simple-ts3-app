@@ -29,6 +29,12 @@ export default class SingleChannelRender extends React.Component {
       )
     }
 
+    // Sort clients by clientNickname
+    clients.sort((a, b) => {
+      return a.clientNickname.toLowerCase().localeCompare(b.clientNickname.toLowerCase());
+    })
+
+    // Render clients into a array
     clients.forEach(client => {
       clientsHTML.push(<RenderSingleClient key={client.clid} client={client} />)
     })
