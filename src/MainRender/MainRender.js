@@ -14,7 +14,7 @@ export default class MainRender extends React.Component {
       let channels = [];
 
       data.channels.forEach(channel => {
-        channels.push(<RenderSingleChannel key={channel.cid} name={channel.channelName} clients={channel.clients} />);
+        channels.push(<RenderSingleChannel key={channel.cid} channelName={channel.channelName} clients={channel.clients} />);
       });
 
       if (channels.length > 0) {

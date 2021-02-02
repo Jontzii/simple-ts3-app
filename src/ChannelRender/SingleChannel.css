@@ -26,3 +26,8 @@
   height: calc(10px + 2vmin);
   width: calc(10px + 2vmin);
 }
+
+.App-section-grid-item a {
+  color: #f3f3f3;
+  text-decoration: none;
+}
