@@ -6,6 +6,11 @@
   box-shadow: 5px 5px #1c1e24;
 }
 
+.App-section-grid-item:hover, .App-section-grid-item:focus, .App-section-grid-item:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
 .App-section-grid-item-header {
   margin: 10px;
 }
