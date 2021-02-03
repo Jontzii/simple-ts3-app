@@ -1,6 +1,7 @@
 import React from 'react';
-import './Footer.css'
 import github from './../Assets/github.png'
+
+import './Footer.css'
 
 export default class Footer extends React.Component {
   render() {
