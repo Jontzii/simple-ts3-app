@@ -14,6 +14,10 @@ import clearLoader from './Misc/ClearLoader'
 import fetchData from './Misc/FetchData'
 import { ShowUpdateSpinner, HideUpdateSpinner } from './Misc/UpdateLoader'
 
+/* Analytics */
+import ReactGa from 'react-ga';
+const trackingId = "UA-131317095-2";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -32,11 +36,20 @@ class App extends React.Component {
     return new Promise(resolve => setTimeout(resolve, 500)) // 500ms
   }
 
+  /**
+   * On component mount fetch data, clear loading spinner 
+   * and add timer for update.
+   */
   componentDidMount(){
     this.minLoadingTimer().then(() => {
       this.handleFetch().then(() => {
+        ReactGa.initialize(trackingId, {
+          siteSpeedSampleRate: 100
+        });
+        
+        ReactGa.pageview('/');
         clearLoader();
-        this.interval = setInterval(this.updateChannels.bind(this), 10000); // 30s
+        this.interval = setInterval(this.updateChannels.bind(this), 10000); // 10s
       });
     })
   }
@@ -46,7 +59,7 @@ class App extends React.Component {
   }
 
   /**
-   * Fetches new data
+   * Fetches data and saves it to state.
    */
   handleFetch() {
     return new Promise(resolve => {
@@ -63,7 +76,7 @@ class App extends React.Component {
   }
 
   /**
-   * Handles the actual update process
+   * Handles the updating process (show/hide spinner and fetching).
    */
   updateChannels() {
     // Add spinner to lower right corner
@@ -72,6 +85,13 @@ class App extends React.Component {
     // Fetch data
     this.handleFetch()
     .then(() => {
+
+      this.ReactGA.event({
+        category: 'Fetch',
+        action: 'Fetched data successfully',
+        nonInteraction: true
+      });
+
       // Remove spinner
       setTimeout(() => HideUpdateSpinner(), 1000);
     })
