@@ -86,7 +86,7 @@ class App extends React.Component {
     this.handleFetch()
     .then(() => {
 
-      this.ReactGA.event({
+      ReactGa.event({
         category: 'Fetch',
         action: 'Fetched data successfully',
         nonInteraction: true
