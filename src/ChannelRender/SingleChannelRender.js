@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './SingleChannel.css'
+import './SingleChannelRender.css'
 import './../Misc/Hover.css'
 
-import RenderSingleClient from './SingleClient'
+import RenderSingleClient from './SingleClientRender'
 
 export default class SingleChannelRender extends React.Component {
   render() {
