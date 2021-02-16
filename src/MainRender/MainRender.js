@@ -4,7 +4,7 @@ import './MainRender.css';
 import Error from './../Error/Error'
 import Footer from './../Footer/Footer'
 import Header from './../Header/Header'
-import RenderSingleChannel from './../ChannelRender/SingleChannel'
+import RenderSingleChannel from './../ChannelRender/SingleChannelRender'
 
 export default class MainRender extends React.Component {
   render() {

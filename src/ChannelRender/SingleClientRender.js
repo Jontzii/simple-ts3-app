@@ -5,7 +5,7 @@ import arrow from './../Assets/arrow.png'
 import inputOff from './../Assets/inputOff.png'
 import outputOff from './../Assets/outputOff.png'
 
-export default class RenderSingleClient extends React.Component {
+export default class SingleClientRender extends React.Component {
   render() {
     const { client } = this.props;
 
