@@ -8,7 +8,7 @@ import RenderSingleChannel from './../ChannelRender/SingleChannelRender'
 
 export default class MainRender extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data, errorCode } = this.props;
 
     if (data && data.channels) {
       let channels = [];
@@ -22,8 +22,8 @@ export default class MainRender extends React.Component {
           <div>
             <Header />
 
-            <section className="App-section">
-              <div className="App-section-grid-wrapper">
+            <section className='App-section'>
+              <div className='App-section-grid-wrapper'>
                 {channels}
               </div>
             </section>
@@ -35,19 +35,29 @@ export default class MainRender extends React.Component {
       else {
         return (
           <div>
-            <Error message={"No channels found on the server🤨"}/>
+            <Error message={'No channels found on the server🤨'}/>
             <Footer />
           </div>
         )
       }
     }
     else {
-      return (
-        <div>
-          <Error message={"Error while fetching data🙁"}/>
-          <Footer />
-        </div>
-      )
+      if (errorCode) {
+        return (
+          <div>
+            <Error message={`Error while fetching data🙁 (${errorCode})`}/>
+            <Footer />
+          </div>
+        )
+      }
+      else {
+        return (
+          <div>
+            <Error message={'Error while fetching data🙁'}/>
+            <Footer />
+          </div>
+        )
+      }
     }
   }
 }

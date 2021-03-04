@@ -23,6 +23,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       error: null,
+      errorCode: null,
       data: null
     }
 
@@ -65,13 +66,18 @@ class App extends React.Component {
     return new Promise(resolve => {
       fetchData()
       .then(res => {
-        this.setState({
-          data: res
-        })
-
+        this.setState({ data: res })
         resolve()
       })
-      .catch(err => console.log(err));
+      .catch(e => {
+        this.setState({ data: null })
+
+        if (typeof(e) === 'number') {
+          this.setState({ errorCode: e })
+        }
+
+        resolve()
+      });
     })
   }
 
@@ -85,7 +91,6 @@ class App extends React.Component {
     // Fetch data
     this.handleFetch()
     .then(() => {
-
       ReactGa.event({
         category: 'Fetch',
         action: 'Fetched data successfully',
@@ -95,12 +100,15 @@ class App extends React.Component {
       // Remove spinner
       setTimeout(() => HideUpdateSpinner(), 1000);
     })
-    .catch(err => console.log(err))
+    .catch(() => {
+      this.setState({ data: null })
+    })
   }
   
   render() {
     const {
       error,
+      errorCode,
       data,
     } = this.state;
 
@@ -115,7 +123,7 @@ class App extends React.Component {
     else {
       return (
         <div className="App">
-          <MainRender data={data} />
+          <MainRender data={data} errorCode={errorCode} />
         </div>
       );
     }
