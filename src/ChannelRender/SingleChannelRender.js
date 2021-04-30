@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import './SingleChannelRender.css'
 import './../Misc/Hover.css'
@@ -6,11 +7,11 @@ import './../Misc/Hover.css'
 import RenderSingleClient from './SingleClientRender'
 
 export default class SingleChannelRender extends React.Component {
-  render() {
-    const { channelName, clients } = this.props;
-    const clientsHTML = [];
+  render () {
+    const { channelName, clients } = this.props
+    const clientsHTML = []
 
-    const url = `ts3server://ts.jontzi.com?channel=${channelName}`;
+    const url = `ts3server://ts.jontzi.com?channel=${channelName}`
 
     if (!clients || clients.length === 0) {
       return (
@@ -25,13 +26,13 @@ export default class SingleChannelRender extends React.Component {
               <p>No clients🙁</p>
             </div>
           </div>
-        </div> 
+        </div>
       )
     }
 
     // Sort clients by clientNickname
     clients.sort((a, b) => {
-      return a.clientNickname.toLowerCase().localeCompare(b.clientNickname.toLowerCase());
+      return a.clientNickname.toLowerCase().localeCompare(b.clientNickname.toLowerCase())
     })
 
     // Render clients into a array
@@ -54,4 +55,9 @@ export default class SingleChannelRender extends React.Component {
       </div>
     )
   }
+}
+
+SingleChannelRender.propTypes = {
+  channelName: PropTypes.string.isRequired,
+  clients: PropTypes.array.isRequired
 }

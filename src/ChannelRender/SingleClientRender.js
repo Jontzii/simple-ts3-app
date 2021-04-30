@@ -1,13 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 /* Icons */
-import arrow from './../Assets/arrow.png'
-import inputOff from './../Assets/inputOff.png'
-import outputOff from './../Assets/outputOff.png'
+import arrow from 'Assets/arrow.png'
+import inputOff from 'Assets/inputOff.png'
+import outputOff from 'Assets/outputOff.png'
 
 export default class SingleClientRender extends React.Component {
-  render() {
-    const { client } = this.props;
+  render () {
+    const { client } = this.props
 
     if (client.clientInputMuted && client.clientOutputMuted) {
       return (
@@ -18,8 +19,7 @@ export default class SingleClientRender extends React.Component {
           </span>
         </li>
       )
-    }
-    else if (client.clientInputMuted && !client.clientOutputMuted) {
+    } else if (client.clientInputMuted && !client.clientOutputMuted) {
       return (
         <li>
           <span>
@@ -28,8 +28,7 @@ export default class SingleClientRender extends React.Component {
           </span>
         </li>
       )
-    }
-    else if (!client.clientInputMuted && client.clientOutputMuted) {
+    } else if (!client.clientInputMuted && client.clientOutputMuted) {
       return (
         <li>
           <span>
@@ -38,8 +37,7 @@ export default class SingleClientRender extends React.Component {
           </span>
         </li>
       )
-    }
-    else {
+    } else {
       return (
         <li>
           <img src={arrow} alt="Arrow" />
@@ -51,7 +49,7 @@ export default class SingleClientRender extends React.Component {
 }
 
 class AddMicOffImage extends React.Component {
-  render() {
+  render () {
     return (
       <img src={inputOff} title="Client's microphone is muted." alt="Microphone muted" />
     )
@@ -59,9 +57,13 @@ class AddMicOffImage extends React.Component {
 }
 
 class AddSoundOffImage extends React.Component {
-  render() {
+  render () {
     return (
       <img src={outputOff} title="Client's output is muted." alt="Output muted" />
     )
   }
+}
+
+SingleClientRender.propTypes = {
+  client: PropTypes.object.isRequired
 }

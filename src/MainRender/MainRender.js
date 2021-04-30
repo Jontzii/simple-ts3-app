@@ -1,21 +1,23 @@
-import React from 'react';
-import './MainRender.css';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import Error from './../Error/Error'
 import Footer from './../Footer/Footer'
 import Header from './../Header/Header'
 import RenderSingleChannel from './../ChannelRender/SingleChannelRender'
 
+import './MainRender.css'
+
 export default class MainRender extends React.Component {
-  render() {
-    const { data, errorCode } = this.props;
+  render () {
+    const { data, errorCode } = this.props
 
     if (data && data.channels) {
-      let channels = [];
+      const channels = []
 
       data.channels.forEach(channel => {
-        channels.push(<RenderSingleChannel key={channel.cid} channelName={channel.channelName} clients={channel.clients} />);
-      });
+        channels.push(<RenderSingleChannel key={channel.cid} channelName={channel.channelName} clients={channel.clients} />)
+      })
 
       if (channels.length > 0) {
         return (
@@ -29,10 +31,9 @@ export default class MainRender extends React.Component {
             </section>
 
             <Footer />
-          </div>          
-        );
-      }
-      else {
+          </div>
+        )
+      } else {
         return (
           <div>
             <Error message={'No channels found on the server🤨'}/>
@@ -40,8 +41,7 @@ export default class MainRender extends React.Component {
           </div>
         )
       }
-    }
-    else {
+    } else {
       if (errorCode) {
         return (
           <div>
@@ -49,8 +49,7 @@ export default class MainRender extends React.Component {
             <Footer />
           </div>
         )
-      }
-      else {
+      } else {
         return (
           <div>
             <Error message={'Error while fetching data🙁'}/>
@@ -60,4 +59,9 @@ export default class MainRender extends React.Component {
       }
     }
   }
+}
+
+MainRender.propTypes = {
+  data: PropTypes.object.isRequired,
+  errorCode: PropTypes.number
 }

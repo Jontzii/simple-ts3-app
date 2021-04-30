@@ -1,13 +1,14 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
+
 import './Error.css'
 
 export default class Error extends React.Component {
-  render() {
-
-    let { message } = this.props;
+  render () {
+    let { message } = this.props
 
     if (!message) {
-      message = "No description given😥";
+      message = 'No description given😥'
     }
 
     return (
@@ -19,6 +20,10 @@ export default class Error extends React.Component {
           {message}
         </div>
       </header>
-    );
+    )
   }
+}
+
+Error.propTypes = {
+  message: PropTypes.string
 }
