@@ -3,30 +3,28 @@ import github from './../Assets/github.png'
 
 import './Footer.css'
 
-export default class Footer extends React.Component {
-  render () {
-    return (
-      <footer className="App-footer">
-        <div>
-          <div id="githubLogo">
-            <a
-              href="https://github.com/jontzii/simple-ts3-app"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src={github} alt="Github logo" />
-            </a>
-          </div>
+export default function Footer () {
+  return (
+    <footer className="App-footer">
+      <div>
+        <div id="githubLogo">
           <a
-            className="hvr-float-shadow"
-            href="https://joonashiltunen.fi"
+            href="https://github.com/jontzii/simple-ts3-app"
             target="_blank"
             rel="noreferrer"
           >
-            © 2021 Jontzi
+            <img src={github} alt="Github logo" />
           </a>
         </div>
-      </footer>
-    )
-  }
+        <a
+          className="hvr-float-shadow"
+          href="https://joonashiltunen.fi"
+          target="_blank"
+          rel="noreferrer"
+        >
+          © 2021 Jontzi
+        </a>
+      </div>
+    </footer>
+  )
 }

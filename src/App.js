@@ -5,9 +5,9 @@ import './App.css'
 import './Misc/Hover.css'
 
 /* External components */
-import MainRender from './MainRender/MainRender'
-import Error from './Error/Error'
-import Footer from './Footer/Footer'
+import MainRender from 'MainRender/MainRender'
+import Error from 'Error/Error'
+import Footer from 'Footer/Footer'
 
 /* Helper functions */
 import clearLoader from './Misc/ClearLoader'
@@ -55,6 +55,9 @@ class App extends React.Component {
     })
   }
 
+  /**
+   * Clear the interval on unmount
+   */
   componentWillUnmount () {
     clearInterval(this.interval)
   }
@@ -112,20 +115,13 @@ class App extends React.Component {
       data
     } = this.state
 
-    if (error) {
-      return (
-        <div className="App">
-          <Error />
-          <Footer />
-        </div>
-      )
-    } else {
-      return (
-        <div className="App">
-          <MainRender data={data} errorCode={errorCode} />
-        </div>
-      )
-    }
+    return (
+      <div className="App">
+        {error && <Error />}
+        {!error && <MainRender data={data} errorCode={errorCode} />}
+        <Footer />
+      </div>
+    )
   }
 }
 
