@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 
 import AppBar from '@material-ui/core/AppBar'
@@ -20,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Header () {
+export default function Header (props) {
+  const { userLoggedIn, setLoginStatus } = props
   const classes = useStyles()
 
   return (
@@ -30,9 +32,15 @@ export default function Header () {
           <Typography variant="h6" className={classes.title}>
             Naapur1t TS3 Server
           </Typography>
-          <Button color="inherit" >Login</Button>
+          {!userLoggedIn && <Button color="inherit" onClick={e => setLoginStatus(true)} >Login</Button>}
+          {userLoggedIn && <Button color="inherit" onClick={e => setLoginStatus(false)} >Logout</Button>}
         </Toolbar>
       </AppBar>
     </div>
   )
+}
+
+Header.propTypes = {
+  userLoggedIn: PropTypes.bool,
+  setLoginStatus: PropTypes.func.isRequired
 }

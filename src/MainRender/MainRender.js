@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Error from 'Error/Error'
@@ -9,6 +9,7 @@ import './MainRender.css'
 
 export default function MainRender (props) {
   const { data, errorCode } = props
+  const [userLoggedIn, setLoginStatus] = useState(false)
 
   if (data && data.channels) {
     const channels = []
@@ -25,7 +26,10 @@ export default function MainRender (props) {
     if (channels.length > 0) {
       return (
         <div>
-          <Header />
+          <Header
+            userLoggedIn={userLoggedIn}
+            setLoginStatus={setLoginStatus.bind(this)}
+          />
           <section className='App-section'>
             <div className='App-section-grid-wrapper'>
               {channels}
@@ -47,6 +51,6 @@ export default function MainRender (props) {
 }
 
 MainRender.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   errorCode: PropTypes.number
 }
