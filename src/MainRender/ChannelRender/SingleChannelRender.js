@@ -44,30 +44,17 @@ export default function SingleChannelRender (props) {
 
   const url = `ts3server://ts.jontzi.com?channel=${channelName}`
 
-  if (!clients || clients.length === 0) {
-    return (
-      <Paper className={classes.paper} elevation={20}>
-        <div>
-          <a href={url} >
-            <h3>{channelName}</h3>
-          </a>
-        </div>
-        <div>
-          <p>No clients🙁</p>
-        </div>
-      </Paper>
-    )
+  if (clients && clients.length > 0) {
+    // Sort clients by clientNickname
+    clients.sort((a, b) => {
+      return a.clientNickname.toLowerCase().localeCompare(b.clientNickname.toLowerCase())
+    })
+
+    // Render clients into a array
+    clients.forEach(client => {
+      clientsHTML.push(<RenderSingleClient key={client.clid} client={client} />)
+    })
   }
-
-  // Sort clients by clientNickname
-  clients.sort((a, b) => {
-    return a.clientNickname.toLowerCase().localeCompare(b.clientNickname.toLowerCase())
-  })
-
-  // Render clients into a array
-  clients.forEach(client => {
-    clientsHTML.push(<RenderSingleClient key={client.clid} client={client} />)
-  })
 
   return (
     <Paper className={classes.paper} elevation={20}>
@@ -78,7 +65,8 @@ export default function SingleChannelRender (props) {
       </div>
       <div className={classes.body}>
         <ul>
-          {clientsHTML}
+          {(!clients || clients.length === 0) && <p>No clients🙁</p>}
+          {clients.length > 0 && clientsHTML}
         </ul>
       </div>
     </Paper>
