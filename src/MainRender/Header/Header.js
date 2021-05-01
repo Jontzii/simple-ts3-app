@@ -7,14 +7,18 @@ import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 
-import './Header.css'
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1
   },
+  bar: {
+    backgroundColor: '#3b414d'
+  },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+    '&:hover': {
+      backgroundColor: '#282c34'
+    }
   },
   title: {
     flexGrow: 1
@@ -28,12 +32,12 @@ export default function Header (props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+        <Toolbar className={classes.bar}>
+          <Typography variant="h5" className={classes.title}>
             Naapur1t TS3 Server
           </Typography>
-          {!userLoggedIn && <Button color="inherit" onClick={e => setLoginStatus(true)} >Login</Button>}
-          {userLoggedIn && <Button color="inherit" onClick={e => setLoginStatus(false)} >Logout</Button>}
+          {!userLoggedIn && <Button className={classes.menuButton} color="inherit" onClick={e => setLoginStatus(true)} >Login</Button>}
+          {userLoggedIn && <Button className={classes.menuButton} color="inherit" onClick={e => setLoginStatus(false)} >Logout</Button>}
         </Toolbar>
       </AppBar>
     </div>

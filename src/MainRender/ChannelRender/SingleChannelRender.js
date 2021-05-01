@@ -1,12 +1,44 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
 
-import './SingleChannelRender.css'
 import 'Misc/Hover.css'
 
 import RenderSingleClient from 'MainRender/ClientRender/SingleClientRender'
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    margin: theme.spacing(2),
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: '#f3f3f3',
+    backgroundColor: '#3b414d',
+    '& a': {
+      color: '#f3f3f3',
+      textDecoration: 'none'
+    }
+  },
+  body: {
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    '& ul': {
+      listStylePosition: 'inside',
+      listStyleType: 'none'
+    },
+    '& img': {
+      verticalAlign: 'middle',
+      height: 'calc(10px + 2vmin)',
+      width: 'calc(10px + 2vmin)'
+    }
+  }
+}))
+
 export default function SingleChannelRender (props) {
+  const classes = useStyles()
   const { channelName, clients } = props
   const clientsHTML = []
 
@@ -14,18 +46,16 @@ export default function SingleChannelRender (props) {
 
   if (!clients || clients.length === 0) {
     return (
-      <div className="App-section-grid-item">
-        <div >
-          <div className="App-section-grid-item-header">
-          <a className="hvr-float-shadow" href={url} >
+      <Paper className={classes.paper} elevation={20}>
+        <div>
+          <a href={url} >
             <h3>{channelName}</h3>
           </a>
-          </div>
-          <div className="App-section-grid-item-body">
-            <p>No clients🙁</p>
-          </div>
         </div>
-      </div>
+        <div>
+          <p>No clients🙁</p>
+        </div>
+      </Paper>
     )
   }
 
@@ -40,18 +70,18 @@ export default function SingleChannelRender (props) {
   })
 
   return (
-    <div className="App-section-grid-item">
-      <div className="App-section-grid-item-header">
-        <a className="hvr-float-shadow" href={url} >
+    <Paper className={classes.paper} elevation={20}>
+      <div>
+        <a href={url} >
           <h3>{channelName}</h3>
         </a>
       </div>
-      <div className="App-section-grid-item-body">
+      <div className={classes.body}>
         <ul>
           {clientsHTML}
         </ul>
       </div>
-    </div>
+    </Paper>
   )
 }
 
