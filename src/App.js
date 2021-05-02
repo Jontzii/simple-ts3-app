@@ -1,18 +1,18 @@
 import React from 'react'
 
 /* CSS Files */
-import './App.css'
-import './Misc/Hover.css'
+import 'App.css'
+import 'Misc/Hover.css'
 
 /* External components */
-import MainRender from 'MainRender/MainRender'
+import MainPage from 'MainPage/MainPage'
 import Error from 'Error/Error'
 import Footer from 'Footer/Footer'
 
 /* Helper functions */
-import clearLoader from './Misc/ClearLoader'
-import fetchData from './Misc/FetchData'
-import { ShowUpdateSpinner, HideUpdateSpinner } from './Misc/UpdateLoader'
+import clearLoader from 'Misc/ClearLoader'
+import fetchData from 'Misc/FetchData'
+import { ShowUpdateSpinner, HideUpdateSpinner } from 'Misc/UpdateLoader'
 
 /* Analytics */
 import ReactGa from 'react-ga'
@@ -118,7 +118,7 @@ class App extends React.Component {
     return (
       <div className="App">
         {error && <Error />}
-        {!error && <MainRender data={data} errorCode={errorCode} />}
+        {!error && <MainPage data={data} errorCode={errorCode} />}
         <Footer />
       </div>
     )

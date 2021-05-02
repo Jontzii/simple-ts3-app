@@ -1,11 +1,34 @@
 import React from 'react'
-import github from './../Assets/github.png'
 
-import './Footer.css'
+import { makeStyles } from '@material-ui/core/styles'
+
+import github from 'Assets/github.png'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#282c34',
+    color: '#f3f3f3',
+    minHeight: '12vh',
+    margin: 'auto',
+    '& a': {
+      padding: '1vh',
+      color: '#f3f3f3'
+    },
+    '& img': {
+      width: '32px',
+      height: '32px'
+    }
+  }
+}))
 
 export default function Footer () {
+  const classes = useStyles()
+
   return (
-    <footer className="App-footer">
+    <footer className={classes.root}>
       <div>
         <div id="githubLogo">
           <a

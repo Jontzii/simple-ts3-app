@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   bar: {
     backgroundColor: '#3b414d'
   },
-  menuButton: {
+  loginButton: {
     marginRight: theme.spacing(2),
     '&:hover': {
       backgroundColor: '#282c34'
@@ -36,8 +36,8 @@ export default function Header (props) {
           <Typography variant="h5" className={classes.title}>
             Naapur1t TS3 Server
           </Typography>
-          {!userLoggedIn && <Button className={classes.menuButton} color="inherit" onClick={e => setLoginStatus(true)} >Login</Button>}
-          {userLoggedIn && <Button className={classes.menuButton} color="inherit" onClick={e => setLoginStatus(false)} >Logout</Button>}
+          {!userLoggedIn && <Button className={classes.loginButton} color="inherit" onClick={e => setLoginStatus(true)} >Login</Button>}
+          {userLoggedIn && <Button className={classes.loginButton} color="inherit" onClick={e => setLoginStatus(false)} >Logout</Button>}
         </Toolbar>
       </AppBar>
     </div>

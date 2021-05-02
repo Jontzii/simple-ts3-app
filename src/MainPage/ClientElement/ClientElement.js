@@ -6,7 +6,7 @@ import arrow from 'Assets/arrow.png'
 import inputOff from 'Assets/inputOff.png'
 import outputOff from 'Assets/outputOff.png'
 
-export default function SingleClientRender (props) {
+export default function SingleClient (props) {
   const { client } = props
 
   return (
@@ -22,7 +22,7 @@ export default function SingleClientRender (props) {
   )
 }
 
-SingleClientRender.propTypes = {
+SingleClient.propTypes = {
   client: PropTypes.object.isRequired
 }
 

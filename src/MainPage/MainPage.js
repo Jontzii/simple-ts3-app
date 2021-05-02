@@ -1,22 +1,42 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Error from 'Error/Error'
-import Header from 'MainRender/Header/Header'
-import RenderSingleChannel from './ChannelRender/SingleChannelRender'
+import Grid from '@material-ui/core/Grid'
+import { makeStyles } from '@material-ui/core/styles'
 
-import './MainRender.css'
+import Error from 'Error/Error'
+import Header from 'MainPage/Header/Header'
+import ChannelElement from 'MainPage/ChannelElement/ChannelElement'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: '#282c34',
+    color: '#f3f3f3',
+    minHeight: '100vh',
+    maxWidth: '100vw',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 'calc(10px + 2vmin)'
+  },
+  grid: {
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    height: '100%'
+  }
+}))
 
 export default function MainRender (props) {
   const { data, errorCode } = props
   const [userLoggedIn, setLoginStatus] = useState(false)
+
+  const classes = useStyles()
 
   if (data && data.channels) {
     const channels = []
 
     data.channels.forEach(channel => {
       channels.push(
-        <RenderSingleChannel
+        <ChannelElement
           key={channel.cid}
           channelName={channel.channelName}
           clients={channel.clients}
@@ -25,16 +45,15 @@ export default function MainRender (props) {
 
     if (channels.length > 0) {
       return (
-        <div>
+        <div className={classes.root}>
           <Header
             userLoggedIn={userLoggedIn}
             setLoginStatus={setLoginStatus.bind(this)}
           />
-          <section className='App-section'>
-            <div className='App-section-grid-wrapper'>
-              {channels}
-            </div>
-          </section>
+
+          <Grid container direction={'row'} className={classes.grid}>
+            {channels}
+          </Grid>
         </div>
       )
     }
