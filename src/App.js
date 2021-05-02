@@ -1,133 +1,128 @@
-import React from 'react';
+import React from 'react'
 
 /* CSS Files */
-import './App.css';
-import './Misc/Hover.css';
+import 'App.css'
+import 'Misc/Hover.css'
 
 /* External components */
-import MainRender from './MainRender/MainRender'
-import Error from './Error/Error'
-import Footer from './Footer/Footer'
+import MainPage from 'MainPage/MainPage'
+import Error from 'Error/Error'
+import Footer from 'Footer/Footer'
 
 /* Helper functions */
-import clearLoader from './Misc/ClearLoader'
-import fetchData from './Misc/FetchData'
-import { ShowUpdateSpinner, HideUpdateSpinner } from './Misc/UpdateLoader'
+import clearLoader from 'Misc/ClearLoader'
+import fetchData from 'Misc/FetchData'
+import { ShowUpdateSpinner, HideUpdateSpinner } from 'Misc/UpdateLoader'
 
 /* Analytics */
-import ReactGa from 'react-ga';
-const trackingId = "UA-131317095-2";
+import ReactGa from 'react-ga'
+const trackingId = 'UA-131317095-2'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       error: null,
       errorCode: null,
       data: null
     }
 
-    this.interval = null;
+    this.interval = null
   }
 
   /**
    * Add some loading time so the animation wont be too fast
    */
-  minLoadingTimer(){
+  minLoadingTimer () {
     return new Promise(resolve => setTimeout(resolve, 500)) // 500ms
   }
 
   /**
-   * On component mount fetch data, clear loading spinner 
+   * On component mount fetch data, clear loading spinner
    * and add timer for update.
    */
-  componentDidMount(){
+  componentDidMount () {
     this.minLoadingTimer().then(() => {
       this.handleFetch().then(() => {
         ReactGa.initialize(trackingId, {
           siteSpeedSampleRate: 100
-        });
-        
-        ReactGa.pageview('/');
-        clearLoader();
-        this.interval = setInterval(this.updateChannels.bind(this), 10000); // 10s
-      });
+        })
+
+        ReactGa.pageview('/')
+        clearLoader()
+        this.interval = setInterval(this.updateChannels.bind(this), 10000) // 10s
+      })
     })
   }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
+  /**
+   * Clear the interval on unmount
+   */
+  componentWillUnmount () {
+    clearInterval(this.interval)
   }
 
   /**
    * Fetches data and saves it to state.
    */
-  handleFetch() {
+  handleFetch () {
     return new Promise(resolve => {
       fetchData()
-      .then(res => {
-        this.setState({ data: res })
-        resolve()
-      })
-      .catch(e => {
-        this.setState({ data: null })
+        .then(res => {
+          this.setState({ data: res })
+          resolve()
+        })
+        .catch(e => {
+          this.setState({ data: null })
 
-        if (typeof(e) === 'number') {
-          this.setState({ errorCode: e })
-        }
+          if (typeof (e) === 'number') {
+            this.setState({ errorCode: e })
+          }
 
-        resolve()
-      });
+          resolve()
+        })
     })
   }
 
   /**
    * Handles the updating process (show/hide spinner and fetching).
    */
-  updateChannels() {
+  updateChannels () {
     // Add spinner to lower right corner
-    ShowUpdateSpinner();
+    ShowUpdateSpinner()
 
     // Fetch data
     this.handleFetch()
-    .then(() => {
-      ReactGa.event({
-        category: 'Fetch',
-        action: 'Fetched data successfully',
-        nonInteraction: true
-      });
+      .then(() => {
+        ReactGa.event({
+          category: 'Fetch',
+          action: 'Fetched data successfully',
+          nonInteraction: true
+        })
 
-      // Remove spinner
-      setTimeout(() => HideUpdateSpinner(), 1000);
-    })
-    .catch(() => {
-      this.setState({ data: null })
-    })
+        // Remove spinner
+        setTimeout(() => HideUpdateSpinner(), 1000)
+      })
+      .catch(() => {
+        this.setState({ data: null })
+      })
   }
-  
-  render() {
+
+  render () {
     const {
       error,
       errorCode,
-      data,
-    } = this.state;
+      data
+    } = this.state
 
-    if (error) {
-      return (
-        <div className="App">
-          <Error />
-          <Footer />
-        </div>
-      )
-    }
-    else {
-      return (
-        <div className="App">
-          <MainRender data={data} errorCode={errorCode} />
-        </div>
-      );
-    }
+    return (
+      <div className="App">
+        {error && <Error />}
+        {!error && <MainPage data={data} errorCode={errorCode} />}
+        <Footer />
+      </div>
+    )
   }
 }
 
-export default App;
+export default App

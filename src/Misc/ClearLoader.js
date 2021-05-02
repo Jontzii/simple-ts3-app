@@ -1,13 +1,13 @@
 const clearLoader = () => {
-  const spinningLoader = document.getElementById('Loader');
-      
-  if(spinningLoader){
+  const spinningLoader = document.getElementById('Loader')
+
+  if (spinningLoader) {
     // Fade out the spinner
-    spinningLoader.classList.add('loaded');
-    
+    spinningLoader.classList.add('loaded')
+
     // Remove from DOM
-    setTimeout(() => {spinningLoader.outerHTML = ''}, 2000);
+    setTimeout(() => { spinningLoader.outerHTML = '' }, 2000)
   }
 }
 
-export default clearLoader;
+export default clearLoader
